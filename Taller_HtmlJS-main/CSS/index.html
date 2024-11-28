@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .header {
+            background-color: #4A90E2;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            animation: slideIn 1s ease-out;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 20px;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        .box {
+            background-color: #F1C40F;
+            color: #333;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding: 15px;
+            width: 250px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+            opacity: 0;
+            animation: boxAnimation 0.8s forwards;
+        }
+
+        .box:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .box:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .box:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-button {
+            background-color: #E91E63;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeIn 1.2s forwards;
+        }
+
+        .toggle-button:hover {
+            background-color: #C2185B;
+        }
+
+        .content {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .content.visible {
+            display: block;
+            opacity: 1;
+            animation: fadeInContent 1s ease-in-out;
+        }
+
+        @keyframes boxAnimation {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInContent {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOutContent {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .responsive-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            animation: zoomInImage 1s ease-out;
+        }
+
+        @keyframes zoomInImage {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .footer {
+            background-color: #4A90E2;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            animation: slideIn 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Bienvenido a Mi Presentación</h1>
+    </header>
+
+    <div class="container">
+        <div class="box">
+            <h2>Información Personal</h2>
+            <button class="toggle-button" onclick="toggleContent('info')">Mostrar Información</button>
+            <div id="info" class="content">
+                <p>Nombre: Leonel</p>
+                <p>Apellido: Jimenez Ramirez</p>
+                <p>Email: J_leonel1@icloud.com</p>
+                <p>Teléfono: +52 833 4632468</p>
+                <p>Fecha de nacimiento: 6 de febrero del 2003</p>
+            </div>
+        </div>
+
+        <div class="box">
+            <h2>yo soy</h2>
+            <button class="toggle-button" onclick="toggleContent('css-info')">Les cuento un poco de mi vida</button>
+            <div id="css-info" class="content">
+                <p>Me llamo leonel tengo 21 años estudio la carrera de ingenieria en sistemas computacionales y pues esto es una pequeña Presentacion sobre mi y pues quisiera pasar la materia de sistemas Operativos Posdata: Me cae muy Bien el Profe.</p>
+            </div>
+        </div>
+
+        <div class="box">
+            <h2>Mi Imagen</h2>
+            <button class="toggle-button" onclick="toggleContent('image')">Mostrar Imagen</button>
+            <div id="image" class="content">
+                <img src="/Taller_HtmlJS-main/CSS/Recursos/guapo.jpg" alt="Mi Imagen" class="responsive-img">
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Leonel Jimenez Ramirez | Todos los derechos reservados.</p>   
+    </footer>
+
+    <script>
+        function toggleContent(id) {
+            const content = document.getElementById(id);
+            
+            if (content.classList.contains('visible')) {
+                content.style.animation = 'fadeOutContent 1s forwards';
+                setTimeout(function() {
+                    content.classList.remove('visible');
+                }, 1000);
+            } else {
+                content.classList.add('visible');
+                content.style.animation = '';
+            }
+        }
+    </script>
+</body>
+</html>
+
